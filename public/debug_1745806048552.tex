@@ -1,0 +1,200 @@
+%-------------------------
+% Resume in Latex
+% Author : Resume Builder
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{latexsym}
+\usepackage{geometry}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{array}
+\input{glyphtounicode}
+
+% Set page margins
+\geometry{
+    a4paper,
+    total={170mm,257mm},
+    left=20mm,
+    top=20mm,
+}
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Shazaan Raza} \\ \vspace{1pt}
+    \small 630 675 3263 $|$ \href{mailto:shazaanraza123@gmail.com}{\underline{shazaanraza123@gmail.com}}
+    
+\end{center}
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading{Stanford University}{Aug 2018 - May 2022}{Bachelor of Science in Computer Science}{}
+  \resumeSubHeadingListEnd
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+    \resumeSubheading{Software Engineering Intern}{Jun 2021 - Aug 2021}{Google}{}
+                \resumeItemListStart
+                \resumeItem{Developed a new feature for Google Search using Python and TensorFlow, improving search accuracy by 15\textbackslash\textbackslash%}
+\resumeItem{Implemented automated testing system that reduced deployment time by 30\textbackslash\textbackslash%}
+\resumeItem{Collaborated with a team of 5 engineers to design and implement RESTful APIs}
+\resumeItem{Optimized database queries, reducing response time by 40\textbackslash\textbackslash%}
+                \resumeItemListEnd
+\resumeSubheading{Software Development Intern}{Jun 2020 - Aug 2020}{Microsoft}{}
+                \resumeItemListStart
+                \resumeItem{Built a machine learning model to predict user behavior in Azure, achieving 92\textbackslash\textbackslash% accuracy}
+\resumeItem{Created automated deployment pipeline using Azure DevOps, reducing deployment time by 50\textbackslash\textbackslash%}
+\resumeItem{Implemented real-time data processing system handling 10,000+ requests per second}
+\resumeItem{Conducted code reviews and mentored junior developers on best practices}
+                \resumeItemListEnd
+\resumeSubheading{Full Stack Developer}{Jan 2020 - May 2020}{Amazon}{}
+                \resumeItemListStart
+                \resumeItem{Developed responsive web applications using React and Node.js, improving user engagement by 25\textbackslash\textbackslash%}
+\resumeItem{Implemented secure authentication system using OAuth 2.0 and JWT tokens}
+\resumeItem{Optimized database queries and implemented caching, reducing load times by 60\textbackslash\textbackslash%}
+\resumeItem{Integrated third-party APIs and services for payment processing and analytics}
+                \resumeItemListEnd
+\resumeSubheading{iOS Developer}{Sep 2019 - Dec 2019}{Apple}{}
+                \resumeItemListStart
+                \resumeItem{Built iOS applications using Swift and SwiftUI, reaching 100,000+ downloads}
+\resumeItem{Implemented Core Data for local storage and RESTful APIs for data synchronization}
+\resumeItem{Created custom UI components and animations, improving app store rating by 1.5 stars}
+\resumeItem{Conducted A/B testing to optimize user experience and increase retention by 20\textbackslash\textbackslash%}
+                \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Projects}
+\resumeSubHeadingListStart
+\resumeSubheading{E-commerce Platform}{March 2024}{Personal Project}{}
+                \resumeItemListStart
+                \resumeItem{Built a full-stack e-commerce website using React, Node.js, and MongoDB}
+\resumeItem{Implemented secure payment processing with Stripe API}
+\resumeItem{Created real-time inventory management system}
+\resumeItem{Added user authentication and authorization}
+\resumeItem{Optimized database queries, reducing load times by 40\textbackslash\textbackslash%}
+                \resumeItemListEnd
+
+\resumeSubheading{Task Management App}{December 2023}{Academic Project}{}
+                \resumeItemListStart
+                \resumeItem{Developed a collaborative task management tool with real-time updates}
+\resumeItem{Implemented WebSocket for instant notifications}
+\resumeItem{Created drag-and-drop interface for task organization}
+\resumeItem{Added team collaboration features and role-based access}
+\resumeItem{Integrated with Google Calendar API}
+                \resumeItemListEnd
+
+\resumeSubheading{AI Image Generator}{November 2023}{Hackathon Project}{}
+                \resumeItemListStart
+                \resumeItem{Built an AI-powered image generation tool using Stable Diffusion}
+\resumeItem{Created a user-friendly interface with React}
+\resumeItem{Implemented image processing and optimization}
+\resumeItem{Added custom style transfer features}
+\resumeItem{Deployed on AWS with auto-scaling}
+                \resumeItemListEnd
+
+\resumeSubheading{Smart Home Dashboard}{August 2023}{Capstone Project}{}
+                \resumeItemListStart
+                \resumeItem{Developed IoT dashboard for smart home management}
+\resumeItem{Integrated with various smart devices using MQTT}
+\resumeItem{Created real-time data visualization with D3.js}
+\resumeItem{Implemented voice control using Google Assistant API}
+\resumeItem{Added energy consumption analytics}
+                \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+%-----------CERTIFICATIONS-----------
+\section{Certifications}
+\resumeSubHeadingListStart
+\resumeSubheading{AWS Certified Developer}{June 2023}{Amazon Web Services}{}
+\resumeSubheading{Google Cloud Professional}{March 2023}{Google}{}
+\resumeSubheading{Microsoft Certified: Azure Developer Associate}{January 2023}{Microsoft}{}
+\resumeSubheading{Apple Certified iOS Developer}{September 2022}{Apple}{}
+\resumeSubHeadingListEnd
+
+%-----------PROGRAMMING SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     <<SKILLS_CONTENT>>
+    }}
+ \end{itemize}
+
+%-------------------------------------------
+\end{document}

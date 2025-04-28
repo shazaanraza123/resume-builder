@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .form-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .format-instructions {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+        #successMessage {
+            display: none;
+            margin-top: 1rem;
+        }
+        .pdf-preview {
+            margin-top: 1rem;
+            border: 1px solid #ddd;
+            padding: 1rem;
+            border-radius: 4px;
+        }
+        .optional-section {
+            border-left: 3px solid #0d6efd;
+            padding-left: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .optional-section h5 {
+            color: #0d6efd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h1 class="text-center mb-4">Resume Builder</h1>
+            <form id="resumeForm">
+                <h4 class="mb-3">Required Information</h4>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Full Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required 
+                        placeholder="John Doe">
+                </div>
+                
+                
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required 
+                        placeholder="john.doe@example.com">
+                </div>
+                
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Phone</label>
+                    <input type="tel" class="form-control" id="phone" name="phone" required 
+                        placeholder="(555) 123-4567">
+                </div>
+                
+                <div class="mb-3">
+                    <label for="education" class="form-label">Education</label>
+                    <textarea class="form-control" id="education" name="education" rows="3" required 
+                        placeholder="University of Technology | Bachelor of Science in Computer Science | Aug. 2020 -- May 2024&#10;Community College | Associate's in Computer Science | Aug. 2018 -- May 2020"></textarea>
+                    <div class="format-instructions">
+                        Format: School Name | Degree | Dates (one per line)
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="experience" class="form-label">Experience</label>
+                    <textarea class="form-control" id="experience" name="experience" rows="5" required 
+                        placeholder="Tech Solutions Inc. | Software Engineer | June 2023 -- Present | Developed full-stack applications using React and Node.js&#10;Digital Innovations | Web Developer Intern | January 2023 -- May 2023 | Created responsive web applications and implemented RESTful APIs"></textarea>
+                    <div class="format-instructions">
+                        Format: Company Name | Position | Dates | Description (one per line)
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="skills" class="form-label">Skills</label>
+                    <textarea class="form-control" id="skills" name="skills" rows="3" required 
+                        placeholder="Programming Languages: Java, Python, JavaScript, C++&#10;Web Development: HTML5, CSS3, React, Node.js, Express&#10;Tools & Technologies: Git, Docker, AWS, VS Code"></textarea>
+                    <div class="format-instructions">
+                        Format: Category: Skill1, Skill2, Skill3 (one per line)
+                    </div>
+                </div>
+
+                <h4 class="mb-3 mt-4">Optional Information</h4>
+
+                <div class="optional-section">
+                    <h5>Links</h5>
+                    <div class="mb-3">
+                        <label for="linkedin" class="form-label">LinkedIn Username</label>
+                        <input type="text" class="form-control" id="linkedin" name="linkedin" 
+                            placeholder="johndoe">
+                        <div class="format-instructions">
+                            Just enter your LinkedIn username (e.g., johndoe for linkedin.com/in/johndoe)
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="github" class="form-label">GitHub Username</label>
+                        <input type="text" class="form-control" id="github" name="github" 
+                            placeholder="johndoe">
+                    </div>
+                    <div class="mb-3">
+                        <label for="website" class="form-label">Personal Website</label>
+                        <input type="url" class="form-control" id="website" name="website" 
+                            placeholder="https://johndoe.dev">
+                    </div>
+                </div>
+
+                <div class="optional-section">
+                    <h5>Projects</h5>
+                    <div class="mb-3">
+                        <label for="projects" class="form-label">Projects</label>
+                        <textarea class="form-control" id="projects" name="projects" rows="4" 
+                            placeholder="E-commerce Platform | Personal Project | March 2024 | Built a full-stack e-commerce website with React, Node.js, and MongoDB&#10;Task Management App | Academic Project | December 2023 | Developed a collaborative task management tool with real-time updates"></textarea>
+                        <div class="format-instructions">
+                            Format: Project Name | Type | Date | Description (one per line)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="optional-section">
+                    <h5>Certifications</h5>
+                    <div class="mb-3">
+                        <label for="certifications" class="form-label">Certifications</label>
+                        <textarea class="form-control" id="certifications" name="certifications" rows="3" 
+                            placeholder="AWS Certified Developer | Amazon Web Services | June 2023&#10;Google Cloud Professional | Google | March 2023"></textarea>
+                        <div class="format-instructions">
+                            Format: Certification Name | Issuing Organization | Date (one per line)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="optional-section">
+                    <h5>Leadership Experience</h5>
+                    <div class="mb-3">
+                        <label for="leadership" class="form-label">Leadership Experience</label>
+                        <textarea class="form-control" id="leadership" name="leadership" rows="4" 
+                            placeholder="Tech Club | President | Jan 2022 - Present | Led a team of 50+ members, organized weekly workshops&#10;Student Council | Vice President | Aug 2021 - May 2022 | Managed student activities and represented student body"></textarea>
+                        <div class="format-instructions">
+                            Format: Organization | Role | Dates | Description (one per line)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="optional-section">
+                    <h5>Interests</h5>
+                    <div class="mb-3">
+                        <label for="interests" class="form-label">Interests</label>
+                        <textarea class="form-control" id="interests" name="interests" rows="2" 
+                            placeholder="Machine Learning, Open Source Development, Photography, Hiking, Reading Science Fiction"></textarea>
+                    </div>
+                </div>
+
+                <div class="optional-section">
+                    <h5>Profession</h5>
+                    <div class="mb-3"></div>
+                        <label for="profession" class="form-label">Profession</label>
+                        <input type="text" class="form-control" id="profession" name="profession" 
+                            placeholder="Full-stack software engineer specializing in web development">
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary w-100">Generate Resume</button>
+            </form>
+
+            <div id="successMessage" class="alert alert-success">
+                <p id="messageText"></p>
+                <div class="pdf-preview">
+                    <p>Your resume has been generated! Click the button below to view it:</p>
+                    <a id="pdfLink" href="#" class="btn btn-success" target="_blank">View Resume</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('resumeForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const data = {
+                name: formData.get('name'),
+                position: formData.get('position'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                profession: formData.get('profession')?.trim() || '',
+                linkedin: formData.get('linkedin')?.trim() || '',
+                github: formData.get('github')?.trim() || '',
+                website: formData.get('website')?.trim() || '',
+                education: formData.get('education').trim(),
+                experience: formData.get('experience').trim(),
+                leadership: formData.get('leadership')?.trim() || '',
+                skills: formData.get('skills').trim(),
+                projects: formData.get('projects')?.trim() || '',
+                certifications: formData.get('certifications')?.trim() || '',
+                interests: formData.get('interests')?.trim() || ''
+            };
+
+            // Validate the data format
+            if (!validateData(data)) {
+                return;
+            }
+            
+            try {
+                const response = await fetch('/generate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                if (result.success) {
+                    // Show success message and PDF link
+                    document.getElementById('messageText').textContent = result.message;
+                    document.getElementById('pdfLink').href = result.pdfUrl;
+                    document.getElementById('successMessage').style.display = 'block';
+                    
+                    // Scroll to the success message
+                    document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    alert('Error generating resume: ' + result.error);
+                }
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        });
+
+        function validateData(data) {
+            // Check if education entries are properly formatted
+            const educationLines = data.education.split('\n').filter(line => line.trim());
+            for (const line of educationLines) {
+                const parts = line.split('|');
+                if (parts.length !== 3) {
+                    alert('Education format error. Each line should be: School Name | Degree | Dates');
+                    return false;
+                }
+            }
+
+            // Check if experience entries are properly formatted
+            const experienceLines = data.experience.split('\n').filter(line => line.trim());
+            for (const line of experienceLines) {
+                const parts = line.split('|');
+                if (parts.length !== 4) {
+                    alert('Experience format error. Each line should be: Company Name | Position | Dates | Description');
+                    return false;
+                }
+            }
+
+            // Check if skills entries are properly formatted
+            const skillsLines = data.skills.split('\n').filter(line => line.trim());
+            for (const line of skillsLines) {
+                if (!line.includes(':')) {
+                    alert('Skills format error. Each line should be: Category: Skill1, Skill2, Skill3');
+                    return false;
+                }
+            }
+
+            // Check if projects entries are properly formatted (if provided)
+            if (data.projects) {
+                const projectLines = data.projects.split('\n').filter(line => line.trim());
+                for (const line of projectLines) {
+                    const parts = line.split('|');
+                    if (parts.length !== 4) {
+                        alert('Projects format error. Each line should be: Project Name | Type | Date | Description');
+                        return false;
+                    }
+                }
+            }
+
+            // Check if certifications entries are properly formatted (if provided)
+            if (data.certifications) {
+                const certLines = data.certifications.split('\n').filter(line => line.trim());
+                for (const line of certLines) {
+                    const parts = line.split('|');
+                    if (parts.length !== 3) {
+                        alert('Certifications format error. Each line should be: Certification Name | Issuing Organization | Date');
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+    </script>
+</body>
+</html> 
