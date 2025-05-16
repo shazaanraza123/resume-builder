@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
-    "build": "npm install && mkdir -p public && cp -r src/templates public/",
+    "build": "npm install && mkdir -p public && cp -r src/templates public/ && cp -r src/static public/",
     "serve": "node src/index.js"
   },
   "dependencies": {
@@ -14,7 +14,6 @@
     "body-parser": "^1.20.2",
     "ejs": "^3.1.9",
     "dotenv": "^16.3.1",
-    "node-latex": "^3.0.0",
     "pdf-lib": "^1.17.1"
   },
   "devDependencies": {
