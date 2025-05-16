@@ -60,7 +60,7 @@ app.post('/generate', async (req, res) => {
         const projectsContent = projects ? projects : '\\item None provided';
         const certificationsContent = certifications ? certifications : '';
         const skillsContent = skills ? skills : 'None provided';
-
+        
         // Generate LaTeX content
         console.log('Generating LaTeX content...');
         const latexContent = await latexGenerator.generateResume({

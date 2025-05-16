@@ -89,13 +89,12 @@ class LatexGenerator {
             let certificationsSection = '';
             if (data.certifications && data.certifications.trim() !== '') {
                 const certificationItems = this.formatCertifications(data.certifications);
-                console.log('Formatted certifications:', certificationItems);
                 if (certificationItems.trim() !== '') {
-                    certificationsSection = certificationItems;
+                    certificationsSection = `\\section{Certifications}\n\\resumeSubHeadingListStart\n${certificationItems}\n\\resumeSubHeadingListEnd\n`;
                 }
             }
-            console.log('Final certifications section:', certificationsSection);
             template = template.replace(/<<CERTIFICATIONS_SECTION>>/g, certificationsSection);
+            console.log('Final certifications section:', certificationsSection);
 
             // Format interests
             let interestsSection = '';
@@ -167,6 +166,10 @@ class LatexGenerator {
     }
 
     formatCertifications(certifications) {
+        if (!certifications || certifications.trim() === '') {
+            return '';
+        }
+
         const lines = certifications
             .split('\n')
             .map(line => line.trim())
@@ -177,12 +180,12 @@ class LatexGenerator {
         }
 
         return lines.map(cert => {
-            const [name, organization, date] = cert.split('|').map(part => part.trim());
-            if (!name || !organization || !date) {
-                throw new Error('Invalid certification format');
-            }
-            return `\\resumeSubheading{${this.escapeLatex(name)}}{${this.escapeLatex(date)}}{${this.escapeLatex(organization)}}{}`;
-        }).join('\n');
+                const [name, organization, date] = cert.split('|').map(part => part.trim());
+                if (!name || !organization || !date) {
+                return '';
+                }
+                return `\\resumeSubheading{${this.escapeLatex(name)}}{${this.escapeLatex(date)}}{${this.escapeLatex(organization)}}{}`;
+        }).filter(item => item !== '').join('\n');
     }
 
     formatSkills(skills) {
