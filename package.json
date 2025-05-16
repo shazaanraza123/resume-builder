@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
-    "build": "npm install && mkdir -p public && cp -r src/templates public/ && cp -r src/static public/",
+    "build": "npm install && mkdir -p public && cp -r src/templates public/ && [ -d src/static ] && cp -r src/static public/ || true",
     "serve": "node src/index.js"
   },
   "dependencies": {
