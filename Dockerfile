@@ -1,7 +1,7 @@
 FROM node:18
 
 # Install TeX Live (basic LaTeX tools)
-RUN apt-get update && apt-get install -y texlive-latex-base
+RUN apt-get update && apt-get install -y texlive-full
 
 # Set working directory
 WORKDIR /app
