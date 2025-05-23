@@ -21,7 +21,7 @@ class LatexGenerator {
 
             // Replace placeholders with actual data
             template = template.replace(/<<NAME>>/g, this.escapeLatex(data.name));
-            template = template.replace(/<<POSITION>>/g, this.escapeLatex(data.position));
+            template = template.replace(/<<POSITION>>/g, this.escapeLatex(data.position || ''));
             template = template.replace(/<<PHONE>>/g, this.escapeLatex(data.phone));
             template = template.replace(/<<EMAIL>>/g, this.escapeLatex(data.email));
             
@@ -54,58 +54,68 @@ class LatexGenerator {
             template = template.replace(/<<PROFESSION_SECTION>>/g, professionSection);
             
             // Format education
+            let educationSection = '';
             const educationItems = this.formatEducation(data.education);
-            template = template.replace(/<<EDUCATION>>/g, educationItems);
+            if (educationItems && educationItems.trim()) {
+                educationSection = educationItems;
+            }
+            template = template.replace(/<<EDUCATION_SECTION>>/g, educationSection);
 
             // Format experience
+            let experienceSection = '';
             const experienceItems = this.formatExperience(data.experience);
-            template = template.replace(/<<EXPERIENCE>>/g, experienceItems);
-
-            // Format leadership
-            let leadershipSection = '';
-            if (data.leadership && data.leadership.trim()) {
-                const leadershipItems = this.formatLeadership(data.leadership);
-                if (leadershipItems.trim()) {
-                    leadershipSection = `\\section{Leadership Experience}\n\\resumeSubHeadingListStart\n${leadershipItems}\n\\resumeSubHeadingListEnd\n`;
-                }
+            if (experienceItems && experienceItems.trim()) {
+                experienceSection = experienceItems;
             }
-            template = template.replace(/<<LEADERSHIP_SECTION>>/g, leadershipSection);
+            template = template.replace(/<<EXPERIENCE_SECTION>>/g, experienceSection);
 
             // Format projects
-            console.log('Processing projects data:', data.projects);
             let projectsSection = '';
             if (data.projects && data.projects.trim()) {
-                console.log('Projects data exists, formatting...');
                 const projectItems = this.formatProjects(data.projects);
-                console.log('Formatted projects:', projectItems);
-                if (projectItems.trim()) {
+                if (projectItems && projectItems.trim()) {
                     projectsSection = projectItems;
                 }
             }
             template = template.replace(/<<PROJECTS_SECTION>>/g, projectsSection);
 
             // Format certifications
-            console.log('Processing certifications:', data.certifications);
             let certificationsSection = '';
-            if (data.certifications && data.certifications.trim() !== '') {
+            if (data.certifications && data.certifications.trim()) {
                 const certificationItems = this.formatCertifications(data.certifications);
-                if (certificationItems.trim() !== '') {
-                    certificationsSection = `\\section{Certifications}\n\\resumeSubHeadingListStart\n${certificationItems}\n\\resumeSubHeadingListEnd\n`;
+                if (certificationItems && certificationItems.trim()) {
+                    certificationsSection = `\\section{Certifications}\n\\resumeSubHeadingListStart\n${certificationItems}\n\\resumeSubHeadingListEnd`;
                 }
             }
             template = template.replace(/<<CERTIFICATIONS_SECTION>>/g, certificationsSection);
-            console.log('Final certifications section:', certificationsSection);
+
+            // Format leadership
+            let leadershipSection = '';
+            if (data.leadership && data.leadership.trim()) {
+                const leadershipItems = this.formatLeadership(data.leadership);
+                if (leadershipItems && leadershipItems.trim()) {
+                    leadershipSection = `\\section{Leadership Experience}\n\\resumeSubHeadingListStart\n${leadershipItems}\n\\resumeSubHeadingListEnd`;
+                }
+            }
+            template = template.replace(/<<LEADERSHIP_SECTION>>/g, leadershipSection);
 
             // Format interests
             let interestsSection = '';
             if (data.interests && data.interests.trim()) {
-                interestsSection = `\\section{Interests}\n\\resumeSubHeadingListStart\n\\resumeSubheading{${this.escapeLatex(data.interests)}}{}{}{}\n\\resumeSubHeadingListEnd\n`;
+                interestsSection = `\\section{Interests}\n\\resumeSubHeadingListStart\n\\resumeSubheading{${this.escapeLatex(data.interests)}}{}{}{}\n\\resumeSubHeadingListEnd`;
             }
             template = template.replace(/<<INTERESTS_SECTION>>/g, interestsSection);
 
             // Format skills
+            let skillsSection = '';
             const skillsFormatted = this.formatSkills(data.skills);
-            template = template.replace(/<<SKILLS>>/g, skillsFormatted);
+            if (skillsFormatted && skillsFormatted.trim()) {
+                skillsSection = skillsFormatted;
+            }
+            template = template.replace(/<<SKILLS_SECTION>>/g, skillsSection);
+
+            // Remove any empty sections
+            template = template.replace(/\\section\{[^}]+\}\s*\\resumeSubHeadingListStart\s*\\resumeSubHeadingListEnd/g, '');
 
             return template;
         } catch (error) {
@@ -232,6 +242,9 @@ class LatexGenerator {
                 // Create a temporary .tex file
                 const texPath = path.join(__dirname, '../../public', `temp_${Date.now()}.tex`);
                 fs.writeFileSync(texPath, latexContent);
+
+                // Debug: Log the LaTeX content
+                console.log('Generated LaTeX content:', latexContent);
 
                 // Configure LaTeX options
                 const options = {
